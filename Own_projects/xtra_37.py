@@ -1,4 +1,4 @@
-
+"""
 class Solution:
     def numRollsToTarget(self, d: int, f: int, target: int) -> int:
         memo = {}
@@ -20,12 +20,13 @@ class Solution:
             return to_return
 
         return dp(d, target) % (10 ** 9 + 7)
+"""
 
+# s = Solution()
+# print(s.numRollsToTarget(5, 6, 18))
 
-#s = Solution()
-#print(s.numRollsToTarget(5, 6, 18))
-
-"""key = {'a':'n', 'b':'o', 'c':'p', 'd':'q',
+"""
+key = {'a':'n', 'b':'o', 'c':'p', 'd':'q',
        'e':'r', 'f':'s', 'g':'t', 'h':'u',
        'i':'v', 'j':'w', 'k':'x', 'l':'y',
        'm':'z', 'n':'a', 'o':'b', 'p':'c',
@@ -56,7 +57,8 @@ def main():
 
 
 if __name__ == '__main__':
-    main()"""
+    main()
+"""
 
 """
 class SubrectangleQueries:
@@ -76,6 +78,7 @@ class SubrectangleQueries:
         return self.rectangle[row][col]
 """
 
+"""
 def numJewelsInStones(jewels: str, stones: str) -> int:
     count = 0
     for c in stones:
@@ -84,7 +87,16 @@ def numJewelsInStones(jewels: str, stones: str) -> int:
     return count
 
 print(numJewelsInStones("aA", "aAAbbbb"))
+"""
 
+"""
+create_file_name_length = 240
+count = 0
+string = ""
+for c in string:
+    count += 1
+print(count)
+"""
 
 
 

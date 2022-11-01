@@ -430,7 +430,7 @@ def main():
                     pause = False
                     unpause()
 
-    music()
+    # music()
 
     # While run is True the game will run
     run = True

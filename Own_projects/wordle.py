@@ -1,13 +1,14 @@
 import string
 import requests
 import random
-from pprint import pprint
+import sys
+from termcolor import colored, cprint
 
 
 def download_data_json() -> dict:
     """Get data from the url in a json format"""
-    get_url_json = requests.get("https://raw.githubusercontent.com/dwyl/english-words/master/words_dictionary.json").json()
-    return get_url_json
+    get_url_json = requests.get("https://raw.githubusercontent.com/dwyl/english-words/master/words_dictionary.json")
+    return get_url_json.json()
 
 
 def get_random_word():
@@ -22,9 +23,10 @@ def get_random_word_meaning(word_search):
 
 
 def start_text():
-    print("*****Guess The Five Letter Word*****")
-    print("Uppercase letter = Correct letter in the correct position")
-    print("Lowercase letter = Correct letter in the wrong position")
+    cprint("          *****Guess The Five Letter Word*****", attrs=['bold'])
+    cprint("GREEN letter = Correct letter in the correct position", attrs=['bold'])
+    cprint("YELLOW letter = Correct letter in the wrong position", attrs=['bold'])
+    cprint("RED letter = Used letter from alphabet", attrs=['bold'])
 
 
 github_Eng_dict = download_data_json()
@@ -44,7 +46,8 @@ while not real_word:
     except KeyError:
         pass
 
-alphabet = [char for char in "ABCDEFGHIJKLMNOPQRSTUVWXYZ"]
+alphabet = ["\033[1m" + char + "\033[0m" for char in "ABCDEFGHIJKLMNOPQRSTUVWXYZ"]
+
 
 def main():
     turn = 0
@@ -52,7 +55,7 @@ def main():
     word_game = ["_", "_", "_", "_", "_"]
     start_text()
     while turn < 6:
-        print(alphabet)
+        print("".join(alphabet))
         player_word = input(">> ")
 
         # Invalid input handling
@@ -85,17 +88,18 @@ def main():
 
         # Correct letter wrong position checking
         for c in player_word:
-            if c.upper() in alphabet:
-                alphabet.remove(c.upper())
+            if f"\033[1m{c.upper()}\033[0m" in alphabet:
+                alphabet_index = alphabet.index(f"\033[1m{c.upper()}\033[0m")
+                alphabet[alphabet_index] = colored(f"\033[1m{c.upper()}\033[0m", "red")
             if c in hidden_word:
                 index_num = player_word.index(c)
-                word_game[index_num] = c
+                word_game[index_num] = colored("\033[1m" + f"{c}".upper() + "\033[0m", "yellow")
 
         # Correct letter right position checking
         for i, ch in enumerate(player_word):
             if ch == hidden_word[i]:
                 index_num = player_word.index(ch)
-                word_game[index_num] = f"{ch}".upper()
+                word_game[index_num] = colored("\033[1m" + f"{ch}".upper() + "\033[0m", "green")
 
         # Current progress tracking
         print("".join(word_game))
@@ -111,6 +115,3 @@ def main():
 
 if __name__ == '__main__':
     print(main())
-
-
-
