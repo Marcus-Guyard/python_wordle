@@ -1,0 +1,28 @@
+# run with "artillery run hello-world.yml" in Windows powershell
+config:
+  target: https://www.betsspace.com
+  phases:
+    # Sends 5 Virtual users to the backend every second for 60 seconds
+    - duration: 60
+      arrivalRate: 5
+      name: Warm up
+    # Starts with 5 virtual users and sends more every second for 2 minutes capping at 50 virtual users per second
+    - duration: 120
+      arrivalRate: 5
+      rampTo: 50
+      name: Ramp up load
+#    # Sends 50 virtual users every second for the next 10 minutes
+#    - duration: 600
+#      arrivalRate: 50
+#      name: Sustained load
+  # Enable the Playwright engine:
+  engines:
+    playwright:
+      launchOptions:
+        headless: true
+  processor: "./flows.js"
+scenarios:
+  - engine: playwright
+    flowFunction: "helloFlow"
+    flow: []
+    

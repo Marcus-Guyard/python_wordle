@@ -56,6 +56,6 @@ def delete_user(user_id: int) -> str:
     return f"Deleted: {deleted_user}"
 
 if __name__ == '__main__':
-    pprint(delete_user(3218))
+    pprint(delete_user(5581))
 
 
