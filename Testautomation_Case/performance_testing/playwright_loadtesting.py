@@ -1,13 +1,16 @@
+from test_betsspace_classes import BetsspaceHeader
 
 import json
+
 
 def add_to_cart_load_test(page) -> None:
     client = page.context.new_cdp_session(page)
     client.send('Performance.enable')
-    page.goto("https://betsspace.com/")
-    page.get_by_role("link", name="All Cushions").click()
-    page.get_by_role("link", name="Joseph Cush").click()
-    page.get_by_role("button", name="Add to cart").click()
+    driver = BetsspaceHeader(page)
+    driver.home_page()
+    driver.click_all_cushions()
+    driver.nav_product_page()
+    driver.add_product_to_cart()
 
     performanceMetrics = client.send('Performance.getMetrics')
 
