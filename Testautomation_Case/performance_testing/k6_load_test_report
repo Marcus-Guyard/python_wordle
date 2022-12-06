@@ -1,0 +1,11 @@
+
+data_received..............: 553 MB  1.7 MB/s
+data_sent..................: 12 MB   36 kB/s
+group_duration.............: avg=4.39s    min=3.47s   med=4.91s   max=9.49s    p(90)=5.21s   p(95)=5.41s
+http_req_waiting...........: avg=45.74ms  min=24.54ms med=36.98ms max=4.16s    p(90)=66.1ms  p(95)=84.38ms
+http_reqs..................: 58650   175.778269/s
+iteration_duration.........: avg=8.78s    min=8.38s   med=8.63s   max=13.09s   p(90)=9.19s   p(95)=9.61s
+iterations.................: 2346    7.031131/s
+vus........................: 4       min=1        max=100
+vus_max....................: 100     min=100      max=100
+

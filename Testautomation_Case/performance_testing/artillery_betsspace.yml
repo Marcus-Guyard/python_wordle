@@ -1,4 +1,4 @@
-# run with "artillery run hello-world.yml" in Windows powershell
+# run with "artillery run artillery_betsspace.yml" in Windows powershell
 config:
   target: https://www.betsspace.com
   phases:
@@ -20,7 +20,7 @@ config:
     playwright:
       launchOptions:
         headless: true
-  processor: "./flows.js"
+  processor: "./artillery.js"
 scenarios:
   - engine: playwright
     flowFunction: "helloFlow"
